@@ -1,14 +1,21 @@
-import React from 'react'
-import Header from '../components/header'
-import Table from '../components/table'
+import React from "react";
+import Header from "../components/header";
+import Table from "../components/table";
+import Router from "next/router";
+import Layout from "@/components/layout";
 
-const orders = () => {
+const Orders = () => {
+  const handleClick = () => {
+    Router.push("/addproduct");
+  };
   return (
     <>
-    <Header Title = "Orders" buttonTitle = "Add Orders"/>
-    <Table/>
+      <Layout>
+        <Header Title="Orders" buttonTitle="Add Orders" onClick={handleClick} />
+        <Table />
+      </Layout>
     </>
-  )
-}
+  );
+};
 
-export default orders
+export default Orders;

@@ -1,14 +1,15 @@
-import React from 'react'
-import Header from '../components/header'
+import React from "react";
+import Layout from "../components/layout";
+import Header from "../components/header";
 
 const StoreUsers = () => {
   return (
     <>
-       <Header Title = "Store Users" buttonTitle = "Add Users"/>
+      <Layout>
+        <Header Title="Store Users" buttonTitle="Add Users" />
+      </Layout>
     </>
-   
-    
-  )
-}
+  );
+};
 
-export default StoreUsers
+export default StoreUsers;

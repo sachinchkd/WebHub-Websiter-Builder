@@ -1,28 +1,27 @@
-import React from 'react'
+import React from "react";
 
 const Table = () => {
   return (
     <div>
-      
-<div class="relative overflow-x-auto m-auto">
-    <table class="w-auto text-sm text-left text-gray-500 ml-60 mt-10">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Product name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Color
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+      <div class="relative overflow-x-auto m-auto">
+        <table class="w-auto text-sm text-left text-gray-500 ml-60 mt-10">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Product name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Color
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Category
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Price
+              </th>
+            </tr>
+          </thead>
+          {/* <tbody>
                     <tr class="bg-white border-b ">
                         <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap ">
                             Apple MacBook Pro 17"
@@ -65,12 +64,11 @@ const Table = () => {
                             $99
                         </td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-
+                </tbody> */}
+        </table>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;
