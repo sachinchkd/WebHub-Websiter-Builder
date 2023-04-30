@@ -1,14 +1,50 @@
 import React from "react";
+import { useState } from "react";
 
 const Website = () => {
+  const [ProductsResult, setProductsResult] = useState([]);
+
+  const displayProducts = async () => {
+    try {
+      console.log("FETCHING DOCUMENTS");
+      const fetchedProduct = await fetch("/api/ProductsAPI").then((res) =>
+        res.json()
+      );
+      console.log("FETCHED DOCUMENTS");
+      setProductsResult(fetchedProduct);
+      console.log(ProductsResult);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
-      <h1>Result Website</h1>
-      <p>Yo kasari k grne malai grnai ayena yr</p>
-      <p>
-        mongo database ma input data haru haleko fetch garara component ma
-        halera dekhaune xuttai??
-      </p>
+      <div>
+                   <button onClick={displayProducts}> Display user Data</button>
+                    
+        <div>
+                          
+          {ProductsResult.fetchedProduct &&
+            ProductsResult.fetchedProduct.length > 0 && (
+              <ul>
+                                    
+                {ProductsResult.fetchedProduct.map((product) => (
+                  <li key={product._id}>
+                                          <p>{product.name}</p>
+                                          <p>({product.color})</p>
+                                          <p>({product.category})</p>
+                                          <p>({product.price})</p>
+                                        
+                  </li>
+                ))}
+                                
+              </ul>
+            )}
+                      
+        </div>
+                  
+      </div>
+              
     </div>
   );
 };
