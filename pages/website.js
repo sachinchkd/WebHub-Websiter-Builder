@@ -1,50 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
+import WebNavbar from "../components/WebNavbar";
+import WebFooter from "../components/WebFooter";
+import WebProducts from "../components/WebProducts";
 
 const Website = () => {
-  const [ProductsResult, setProductsResult] = useState([]);
+  const [DetailsResult, setDetailsResult] = useState([]);
 
-  const displayProducts = async () => {
+  const displayDetails = async () => {
     try {
       console.log("FETCHING DOCUMENTS");
-      const fetchedProduct = await fetch("/api/ProductsAPI").then((res) =>
+      const fetchedDetails = await fetch("/api/DetailsAPI").then((res) =>
         res.json()
       );
       console.log("FETCHED DOCUMENTS");
-      setProductsResult(fetchedProduct);
-      console.log(ProductsResult);
+      setDetailsResult(fetchedDetails);
+      console.log(DetailsResult);
     } catch (error) {
       console.log(error);
     }
   };
+  displayDetails();
+
   return (
     <div>
-      <div>
-                   <button onClick={displayProducts}> Display user Data</button>
-                    
-        <div>
-                          
-          {ProductsResult.fetchedProduct &&
-            ProductsResult.fetchedProduct.length > 0 && (
-              <ul>
-                                    
-                {ProductsResult.fetchedProduct.map((product) => (
-                  <li key={product._id}>
-                                          <p>{product.name}</p>
-                                          <p>({product.color})</p>
-                                          <p>({product.category})</p>
-                                          <p>({product.price})</p>
-                                        
-                  </li>
-                ))}
-                                
-              </ul>
-            )}
-                      
-        </div>
-                  
-      </div>
+      <WebNavbar
+        Webname={
+          DetailsResult.fetchedDetails &&
+          DetailsResult.fetchedDetails.length > 0 && (
+            <ul>
+                                  
+              {DetailsResult.fetchedDetails.map((detail) => (
+                <li key={detail._id}>
+                                        <p>{detail.name}</p>
+                                                             
+                </li>
+              ))}
+                              
+            </ul>
+          )
+        }
+      />
+      <WebProducts />
               
+      <WebFooter />
     </div>
   );
 };

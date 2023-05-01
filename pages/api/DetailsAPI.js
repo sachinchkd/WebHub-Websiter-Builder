@@ -1,14 +1,7 @@
 import connectMongo from "../../utils/MongoConnect";
-import Product from "../../models/Product";
+import Details from "../../models/Details";
 
-export default async function productAPI(req, res) {
-  // if (req.method === "POST") {
-  //   console.log("CREATING DOCUMENT");
-  //   const createdProduct = await Product.create(req.body);
-  //   console.log("CREATED DOCUMENT");
-  //   res.json({ createdProduct });
-  // }
-
+export default async function detailsAPI(req, res) {
   try {
     console.log("CONNECTING TO MONGO");
     await connectMongo();
@@ -16,14 +9,14 @@ export default async function productAPI(req, res) {
 
     if (req.method === "POST") {
       console.log("CREATING DOCUMENT");
-      const createdProduct = await Product.create(req.body);
+      const createdDetails = await Details.create(req.body);
       console.log("CREATED DOCUMENT");
-      res.json({ createdProduct });
+      res.json({ createdDetails });
     } else if (req.method === "GET") {
       console.log("FETCHED DOCUMENTS");
-      const fetchedProduct = await Product.find({});
+      const fetchedDetails = await Details.find({});
       console.log("FETCHED DOCUMENTS");
-      res.json({ fetchedProduct });
+      res.json({ fetchedDetails });
     } else {
       throw new Error(`Unsupported HTTP method: ${req.method}`);
     }
