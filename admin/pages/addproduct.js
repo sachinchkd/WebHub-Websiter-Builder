@@ -145,12 +145,12 @@ const Addproduct = () => {
               className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               I agree with the{" "}
-              <a
+              <Link
                 href="#"
                 className="text-blue-600 hover:underline dark:text-blue-500"
               >
                 terms and conditions
-              </a>
+              </Link>
               .
             </label>
           </div>

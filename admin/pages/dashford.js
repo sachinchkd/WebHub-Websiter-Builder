@@ -43,9 +43,7 @@ const Dashford = (props) => {
   return (
     <>
       <Link legacyBehavior href="/website">
-        <a target="_blank">
           <Header Title="Date" buttonTitle="Go to your website" />
-        </a>
       </Link>
 
       <div className="flex  space-x-20 ">
