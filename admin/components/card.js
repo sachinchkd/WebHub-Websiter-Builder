@@ -1,10 +1,11 @@
 import React from "react";
+import Link from "next/link";
 
 const Cards = (props) => {
   return (
     <div className="flex ml-72 mt-10  " onClick={props.onClick}>
       <div className="flex-1 w-auto">
-        <a
+        <Link
           href="#"
           className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 "
         >
@@ -14,11 +15,11 @@ const Cards = (props) => {
           </h5>
           <p className="font-normal text-gray-500">{props.p}</p>
           <buttons onClick={props.onClick} name={props.name} />
-        </a>
+        </Link>
       </div>
 
       {/* <div className="flex-1 w-auto">
-        <a
+        <Link
           href="#"
           className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 "
         >
@@ -27,10 +28,10 @@ const Cards = (props) => {
             RS.0{" "}
           </h5>
           <p className="font-normal text-gray-500">Last from Date</p>
-        </a>
+        </Link>
       </div>
       <div className="flex-1 w-auto">
-        <a
+        <Link
           href="#"
           className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 "
         >
@@ -39,7 +40,7 @@ const Cards = (props) => {
             0{" "}
           </h5>
           <p className="font-normal text-gray-500">Last from Date</p>
-        </a>
+        </Link>
       </div> */}
     </div>
   );
