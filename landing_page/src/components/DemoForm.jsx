@@ -7,13 +7,14 @@ function DemoForm() {
   const [pass, setPass] = useState("");
   const submit = (e) => {
     e.preventDefault();
+    console.log(name);
     axios
       .post("http://localhost:4000/login", {
         name: name,
         pass: setPass,
       })
       .then((res) => {
-        localStorage.setItem('response', JSON.stringify(res));
+        localStorage.setItem("response", JSON.stringify(res));
         navigate("http://localhost:8080/");
       });
   };
