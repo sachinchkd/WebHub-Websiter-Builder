@@ -6,9 +6,12 @@ const WebProducts = () => {
   const displayProducts = async () => {
     try {
       console.log("FETCHING DOCUMENTS");
-      const fetchedProduct = await fetch("/api/ProductsAPI").then((res) =>
-        res.json()
-      );
+      const shopname = JSON.parse(localStorage.getItem("response"));
+      console.log(shopname);
+      const fetchedProduct = await fetch(
+        // `/api/ProductsAPI?shopname=${shopname}`
+        `/api/ProductsAPI`
+      ).then((res) => res.json());
       console.log("FETCHED DOCUMENTS");
       setProductsResult(fetchedProduct);
       console.log(ProductsResult);
@@ -19,7 +22,6 @@ const WebProducts = () => {
   return (
     <div>
       <button onClick={displayProducts}> Display user Data</button>
-                  
       <div>
                         
         {ProductsResult.fetchedProduct &&
