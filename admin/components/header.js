@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 const Header = (props) => {
   return (
     <div className="flex-1 max-w-7xl ml-60">
       <div className="flex  bg-[#EDF9F9] border border-gray-200 shadow-md ">
         <div className="flex-1 w-auto p-4">
-          <a href="#">
+          <Link href="#">
             <h4 className="mb-2 text-md font-md tracking-tight text-gray-900 dark:text-black">
               {props.Title}
             </h4>
-          </a>
+          </Link>
           <p className="mb-2 font-normal text-gray-700 dark:text-gray-800">
             2022-01-22
           </p>
