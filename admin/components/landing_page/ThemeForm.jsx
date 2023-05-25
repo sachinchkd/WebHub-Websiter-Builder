@@ -1,7 +1,4 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logo1 from "../assets/logo1.png";
 import {
   Button,
   FormControl,
@@ -11,12 +8,10 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
-function ShopTheme() {
+
+function ThemeForm(props) {
   const [shopName, setShopName] = useState("");
   const [theme, setTheme] = useState("");
-  const [email, setEmail] = useState("");
-
-  const navigate = useNavigate();
 
   const handleChangeTheme = (event) => {
     setTheme(event.target.value);
@@ -26,37 +21,23 @@ function ShopTheme() {
     e.preventDefault();
 
     if (shopName != "" && theme != "") {
-      axios
-        .post("http://localhost:4000/register/shop", {
-          shopName,
-          theme,
-          email,
-        })
-        .then((res) => {
-          console.log(res);
-
-          if (!res.ok) {
-            alert(res.data);
-            navigate("/shop-register");
-          } else {
-            console.log(res);
-            alert("successfully registered");
-            navigate("/register");
-          }
-        })
-        .catch((err) => {
-          console.log("la failed bhayo ta");
-          alert("failed " + err);
-        });
+      props.onSubmit(shopName, theme);
     } else {
       alert("please enter data");
     }
   };
+  const clicked = (e) => {
+    e.preventDefault();
+    props.onClicked(true);
+  };
 
   return (
     <form className="flex w-[98%] mr-0 min-h-[40vh] bg-[white] border-2 border-black translate-y-3 ">
+      <Button variant="text" className={`w-[1rem] h-8`} onClick={clicked}>
+        <img src="/back.gif" />
+      </Button>
       <div className="flex-auto w-[20%] pt-[5%]">
-        <img src={logo1} className="w-[9rem]" />
+        <img src="/logo1.png" className="w-[9rem]" />
       </div>
       <div className="flex-auto w-[70%] pt-[5%] pr-[10%]">
         <h1 className="font-mono font-bold text-xl text-[#4d4d4d]">
@@ -74,15 +55,6 @@ function ShopTheme() {
             fullWidth={true}
             value={shopName}
             onChange={(e) => setShopName(e.target.value)}
-          />
-          <TextField
-            type="text"
-            label="email"
-            required={true}
-            variant="filled"
-            fullWidth={true}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
           <Box sx={{ width: "100%" }}>
             <FormControl fullWidth>
@@ -112,4 +84,4 @@ function ShopTheme() {
     </form>
   );
 }
-export default ShopTheme;
+export default ThemeForm;

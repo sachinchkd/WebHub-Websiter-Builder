@@ -3,7 +3,7 @@ const registerUser = require("../db/user.registerModel");
 const userRegisterModel = require("../db/user.registerModel");
 
 const registerUserController = async (req, res) => {
-  const { shopName, catagory, theme } = req.body;
+  const { shopName, theme } = req.body;
   const { user_fullname, user_phNo, user_email, user_password } = req.body;
 
   const shop = await shopRegisterModel.findOne({ shopName: shopName });
@@ -23,7 +23,6 @@ const registerUserController = async (req, res) => {
     });
     const regShop = await new shopRegisterModel({
       shopName,
-      catagory,
       theme,
       email: user_email,
     });

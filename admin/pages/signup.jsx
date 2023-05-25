@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Form from "../components/Form";
 import { Box, Button } from "@mui/material";
-import ThemeForm from "../components/ThemeForm";
-import UserSelectorForm from "../components/UserSelectorForm";
+import ThemeForm from "../components/landing_page/ThemeForm";
+import UserSelectorForm from "../components/landing_page/UserSelectorForm";
+import { useRouter } from "next/router";
 
 function Signup() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [trigger, setTrigger] = useState(0);
 
   const [userdata, setUserData] = useState({
     shopName: "",
-    catagory: "",
     theme: "",
     user_fullname: "",
     user_phNo: "",
@@ -21,13 +20,12 @@ function Signup() {
     user_password: "",
   });
 
-  const getDataTheme = (user_val1, user_val2, user_val3) => {
-    if (user_val1 !== "" && user_val2 !== "" && user_val3 !== "") {
+  const getDataTheme = (user_val1, user_val2) => {
+    if (user_val1 !== "" && user_val2 !== "") {
       setUserData({
         ...userdata,
         shopName: user_val1,
-        catagory: user_val2,
-        theme: user_val3,
+        theme: user_val2,
       });
       console.log(userdata);
       setTrigger((trigger) => trigger + 1);
@@ -67,17 +65,17 @@ function Signup() {
     console.log(trigger);
     if (trigger == 4) {
       axios
-        .post("http://localhost:4000/register", userdata)
+        .post("http://localhost:5000/register", userdata)
         .then((res) => {
           console.log(res);
 
           if (!res.ok) {
             alert(res.data);
-            navigate("/signup");
+            router.push("/signup");
           } else {
             console.log(res);
             alert("successfully registered");
-            navigate("/login");
+            router.push("/login");
           }
         })
         .catch((err) => {
