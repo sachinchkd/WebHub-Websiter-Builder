@@ -21,13 +21,13 @@ function Signup() {
     user_password: "",
   });
 
-  const getDataTheme = (user_val1, user_val2, user_val3) => {
-    if (user_val1 !== "" && user_val2 !== "" && user_val3 !== "") {
+  const getDataTheme = (user_val1, user_val2) => {
+    if (user_val1 !== "" && user_val2 !== "") {
       setUserData({
         ...userdata,
         shopName: user_val1,
-        catagory: user_val2,
-        theme: user_val3,
+        // catagory: user_val2,
+        theme: user_val2,
       });
       console.log(userdata);
       setTrigger((trigger) => trigger + 1);
@@ -67,7 +67,7 @@ function Signup() {
     console.log(trigger);
     if (trigger == 4) {
       axios
-        .post("http://localhost:4000/register", userdata)
+        .post("http://localhost:5000/register", userdata)
         .then((res) => {
           console.log(res);
 

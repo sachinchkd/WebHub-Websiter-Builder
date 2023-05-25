@@ -10,12 +10,11 @@ export default function Home() {
   const [loading, setLoading] = useState("true");
   useEffect(() => {
     const responseShop = JSON.parse(localStorage.getItem("response"));
-    console.log(responseShop)
+    console.log(responseShop);
     if (!responseShop) {
       setError("true");
     } else {
       setLoading(false);
-      
     }
   }, [loading]);
   if (error)

@@ -10,15 +10,15 @@ const WebProducts = () => {
   const displayProducts = async () => {
     try {
       console.log("FETCHING DOCUMENTS");
-      const shopname = JSON.parse(localStorage.getItem("response"));
-      console.log(shopname);
+      const shopname = await JSON.parse(localStorage.getItem("response"));
+      console.log("shopname", shopname);
       const fetchedProduct = await fetch(
         // `/api/ProductsAPI?shopname=${shopname}`
         `/api/ProductsAPI`
       ).then((res) => res.json());
       console.log("FETCHED DOCUMENTS");
       setProductsResult(fetchedProduct);
-      console.log(ProductsResult);
+      // console.log(ProductsResult);
     } catch (error) {
       console.log(error);
     }

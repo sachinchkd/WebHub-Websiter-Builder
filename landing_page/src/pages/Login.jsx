@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import Form from "../components/Form";
 import axios from "axios";
+import { redirect, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [userdata, setUserData] = useState({
     user_email: "",
     user_password: "",
@@ -24,10 +26,16 @@ function Login() {
     }
 
     console.log(userdata);
-    axios.post("http://localhost:4000/login", userdata).then((res) => {
-      localStorage.setItem("response", JSON.stringify(res));
-      navigate("http://localhost:8080/");
-    });
+    axios
+      .post("http://localhost:5000/login", userdata)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("response", JSON.stringify(res.data));
+        window.location.replace("http://localhost:3000/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

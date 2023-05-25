@@ -6,21 +6,9 @@ const app = express();
 const register = require("./routes/register");
 const registerShop = require("./routes/registerShop");
 const loginRouter = require("./routes/login");
+
 app.use(cors());
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("app is running");
-});
-
-app.use("/register", register);
-app.use("/register/shop", registerShop);
-app.use("login", loginRouter);
-
-app.listen(process.env.PORT, () => {
-  console.log(`app is running in port ${process.env.PORT}`);
-});
-
 mongoose
   .connect(process.env.db)
   .then(() => {
@@ -29,3 +17,15 @@ mongoose
   .catch((err) => {
     console.log(`error ${err}`);
   });
+
+app.get("/", (req, res) => {
+  res.send("app is running");
+});
+
+app.use("/register", register);
+app.use("/register/shop", registerShop);
+app.use("/login", loginRouter);
+
+app.listen(process.env.PORT, () => {
+  console.log(`app is running in port ${process.env.PORT}`);
+});
