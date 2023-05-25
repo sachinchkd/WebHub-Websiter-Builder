@@ -1,25 +1,25 @@
 
 
-import Navbar  from './components/navbar';
-import Header from './components/header';
-import Videocontainer from './components/video';
-import Container from './components/container';
-import Footer from './components/footer';
-import Second from './components/secondcontainer';
+import { Route, Routes } from 'react-router-dom';
+
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import Login from './pages/Login'
+import RegisterShop from './pages/RegisterShop';
 
 
 
 function App() {
-  
+
   return (
-    <div className="App">
-      <Navbar/>
-      <Header/>
-      <Videocontainer/>
-      <Container/>
-      <Second/>
-      <Footer/>
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/signup' element={<Signup/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/shop-register' element={<RegisterShop />} />
+      </Routes>
+    </>
   );
 }
 
