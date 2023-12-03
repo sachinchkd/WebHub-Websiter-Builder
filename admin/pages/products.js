@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/header";
-
+import "next-cloudinary";
 import Modal from "react-modal";
 import Table from "../components/table";
 import Layout from "../components/layout";
@@ -9,28 +9,64 @@ import "flowbite";
 
 const Products = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
-
+  const [imageSrc, setImageSrc] = useState();
+  const [uploadData, setUploadData] = useState();
   const [formValues, setFormValues] = useState({
     name: "",
     color: "",
     category: "",
     price: "",
+    image: "",
+    shop:""
   });
 
-  const { name, color, category, price } = formValues;
+  const { name, color, category, price, image } = formValues;
 
   const [inputarr, setInputarr] = useState([]);
 
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === "file"
+    );
+
+    const formData = new FormData();
+
+    for (const file of fileInput.files) {
+      formData.append("file", file);
+    }
+
+    formData.append("upload_preset", "my-uploads");
+
+    const data = await fetch(
+      "https://api.cloudinary.com/v1_1/dir7pptxd/image/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    ).then((r) => r.json());
+
+    setImageSrc(data.secure_url);
+    console.log(data.secure_url);
+    setFormValues({ ...formValues, image: data.secure_url });
+    setUploadData(data);
+    console.log(formValues);
+    console.log(data);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setInputarr([...inputarr, { name, color, category, price }]);
-
+    console.log(formValues);
+    const shop = await JSON.parse(window.localStorage.getItem("response")).data.shops[0];
+    console.log(shop)
     const createdProduct = await fetch("/api/ProductsAPI", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formValues),
+      body: JSON.stringify({...formValues,shop:shop}),
     });
 
     const data = await createdProduct.json();
@@ -39,14 +75,31 @@ const Products = () => {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+    setFormValues({ ...formValues, [name]: value, image: imageSrc });
   }
 
-  const handleonDelte = (i) => {
-    const deleteVal = [...formValues];
-    deleteVal.splice(i, 1);
-    setFormValues(deleteVal);
-  };
+  function handleOnChange(e) {
+    const reader = new FileReader();
+    reader.onload = function (onLoadEvent) {
+      setImageSrc(onLoadEvent.target.result);
+      setUploadData(undefined);
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  }
+
+  async function handleonDelte(ind) {
+    const list = [...inputarr];
+    list.splice(ind, 1);
+    setInputarr(list);
+    await fetch("/api/ProductsAPI", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formValues),
+    });
+  }
 
   const openModal = () => {
     setIsOpen(true);
@@ -54,6 +107,25 @@ const Products = () => {
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  useEffect(() => {
+    displayProducts();
+  }, []);
+
+  const [ProductsResult, setProductsResult] = useState([]);
+  const displayProducts = async () => {
+    try {
+      console.log("FETCHING DOCUMENTS");
+      const fetchedProduct = await fetch("/api/ProductsAPI").then((res) =>
+        res.json()
+      );
+      console.log("FETCHED DOCUMENTS");
+      setProductsResult(fetchedProduct);
+      console.log(ProductsResult);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -181,43 +253,77 @@ const Products = () => {
               </button>
             </div>
           </form>
+          <form
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            onSubmit={handleOnSubmit}
+            onChange={handleOnChange}
+            method="POST"
+          >
+            <div className="mb-6">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="Category Image"
+              ></label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="file"
+                name="file"
+              />
+              <img src={imageSrc} />
+
+              {imageSrc && !uploadData && (
+                <p>
+                  <button>Upload Files</button>
+                </p>
+              )}
+
+              {uploadData && (
+                <code>
+                  <pre>{JSON.stringify(uploadData, null, 2)}</pre>
+                </code>
+              )}
+            </div>
+          </form>
         </div>
       </Modal>
 
       <Table />
 
       <div>
-        <div className="flex-1 ml-72  ">
-          <table className="w-auto text-sm text-left text-gray-500 mt-10">
-            <tbody>
-              {inputarr.map((info, ind) => (
-                <>
-                  <tr className="bg-white border-b" key={ind}>
-                    <th scope="col" className="px-7 py-3 ">
-                      {info.name}
-                    </th>
+        {ProductsResult.fetchedProduct &&
+          ProductsResult.fetchedProduct.length > 0 && (
+            <div className="flex-1 ml-72  ">
+              <table className="w-auto text-sm text-left text-gray-500 mt-10">
+                <tbody>
+                  {ProductsResult.fetchedProduct.map((product, ind) => (
+                    <>
+                      <tr className="bg-white border-b" key={product?.id}>
+                        <th scope="col" className="px-7 py-3 ">
+                          {product.name}
+                        </th>
 
-                    <th scope="col" className="px-7 py-3  ">
-                      {info.color}
-                    </th>
+                        <th scope="col" className="px-7 py-3  ">
+                          {product.color}
+                        </th>
 
-                    <th scope="col" className="px-7 py-3 ">
-                      {info.category}
-                    </th>
+                        <th scope="col" className="px-7 py-3 ">
+                          {product.category}
+                        </th>
 
-                    <th scope="col" className="px-7 py-3 ">
-                      {info.price}
-                    </th>
+                        <th scope="col" className="px-7 py-3 ">
+                          {product.price}
+                        </th>
 
-                    <th scope="col" className="px-7 py-3 ">
-                      <button onClick={() => handleonDelte(ind)}>x</button>
-                    </th>
-                  </tr>
-                </>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                        <th scope="col" className="px-7 py-3 ">
+                          <button onClick={() => handleonDelte(ind)}>x</button>
+                        </th>
+                      </tr>
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
       </div>
     </Layout>
   );

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import {useRouter} from 'next/router';
+import axios from 'axios'
 import { Box } from "@mui/material";
 import Form from "../components/Form";
 
 function Login() {
+  const router = useRouter()
   const [userdata, setUserData] = useState({
     user_email: "",
     user_password: "",
@@ -20,6 +23,13 @@ function Login() {
         user_email: user_val1,
         user_password: user_val2,
       });
+
+      axios
+        .post("http://localhost:5000/login", userdata)
+        .then((res) => {
+          localStorage.setItem("response", JSON.stringify(res));
+          router.push("/");
+        });
     }
   };
 

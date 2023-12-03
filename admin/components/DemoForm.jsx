@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function DemoForm() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
   const submit = (e) => {
     e.preventDefault();
+    console.log(name);
     axios
-      .post("http://localhost:4000/login", {
+      .post("http://localhost:5000/login", {
         name: name,
         pass: setPass,
       })
       .then((res) => {
-        localStorage.setItem('response', JSON.stringify(res));
-        navigate("http://localhost:8080/");
+        localStorage.setItem("response", JSON.stringify(res));
+        router.push("/");
       });
   };
   return (

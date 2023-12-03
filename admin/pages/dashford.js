@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Modal from "react-modal";
 
-const Dashford = (props) => {
+const Dashbord = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [webname, setWebname] = useState({
     name: "",
@@ -139,4 +139,4 @@ const Dashford = (props) => {
   );
 };
 
-export default Dashford;
+export default Dashbord;

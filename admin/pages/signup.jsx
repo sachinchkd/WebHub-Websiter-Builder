@@ -10,7 +10,6 @@ function Signup() {
   const router = useRouter();
 
   const [trigger, setTrigger] = useState(0);
-
   const [userdata, setUserData] = useState({
     shopName: "",
     theme: "",
@@ -100,24 +99,21 @@ function Signup() {
     <div className="min-h-screen ">
       <Box className="bg-[#FFCEFE] h-[100vh] overflow-hidden ">
         <div
-          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%]  translate-y-[50%] border-2 border-black ${
-            trigger == 0 ? "block " : " hidden"
-          } transition ease-in-out delay-450 `}
+          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%]  translate-y-[50%] border-2 border-black ${trigger == 0 ? "block " : " hidden"
+            } transition ease-in-out delay-450 `}
         >
           <UserSelectorForm onSubmit={next} />
         </div>
         <div
-          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%]  translate-y-[50%] border-2 border-black ${
-            trigger == 1 ? "block " : " hidden"
-          } transition ease-in-out delay-450 `}
+          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%]  translate-y-[50%] border-2 border-black ${trigger == 1 ? "block " : " hidden"
+            } transition ease-in-out delay-450 `}
         >
           <ThemeForm onSubmit={getDataTheme} onClicked={clicked} />
         </div>
 
         <div
-          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%] translate-y-[50%] border-2 border-black ${
-            trigger == 2 ? "block " : "hidden"
-          } transition ease-in-out delay-450`}
+          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%] translate-y-[50%] border-2 border-black ${trigger == 2 ? "block " : "hidden"
+            } transition ease-in-out delay-450`}
         >
           <Form
             type1="text"
@@ -134,9 +130,8 @@ function Signup() {
         </div>
 
         <div
-          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%] translate-y-[50%] border-2 border-black  ${
-            trigger == 3 ? "block " : "hidden"
-          } transition ease-in-out delay-450 `}
+          className={`bg-[#FFE70B] min-h-[40vh] w-[53%] absolute translate-x-[50%] translate-y-[50%] border-2 border-black  ${trigger == 3 ? "block " : "hidden"
+            } transition ease-in-out delay-450 `}
         >
           <Form
             type1="email"
