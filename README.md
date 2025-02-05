@@ -14,7 +14,7 @@ The WebHub app allows administrators to:
 ##Screenshots
 Dashboard
 \\
-('Screenshots/a.png')
+(`Screenshots/a.png`)
 
 ## Getting Started
 
