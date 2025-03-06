@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import logo1 from "../assets/logo1.png";
-import back from "../assets/back.gif";
 import { Button, TextField } from "@mui/material";
+import React, { useState } from "react";
+import back from "../assets/back.gif";
+import logo1 from "../assets/logo.png";
 
 function Form(props) {
   const [val1, setVal1] = useState("");

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import axios from "axios";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import Form from "../components/Form";
-import { Box, Button } from "@mui/material";
 import ThemeForm from "../components/landing_page/ThemeForm";
 import UserSelectorForm from "../components/landing_page/UserSelectorForm";
-import { useRouter } from "next/router";
 
 function Signup() {
   const router = useRouter();
@@ -64,12 +64,13 @@ function Signup() {
     console.log(trigger);
     if (trigger == 4) {
       axios
-        .post("http://localhost:5000/register", userdata)
+        .post("http://localhost:5000/register", userdata
+      )
         .then((res) => {
-          console.log(res);
-
+          
           if (!res.ok) {
-            alert(res.data);
+            console.error("Registration Error:", err);
+            alert("Registration Failed. Try again.");
             router.push("/signup");
           } else {
             console.log(res);

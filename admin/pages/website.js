@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import WebNavbar from "../components/WebNavbar";
+"use client"
+import React, { useState } from "react";
 import WebFooter from "../components/WebFooter";
+import WebNavbar from "../components/WebNavbar";
 import WebProducts from "../components/WebProducts";
 
 const Website = () => {

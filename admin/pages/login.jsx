@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import {useRouter} from 'next/router';
-import axios from 'axios'
 import { Box } from "@mui/material";
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useState } from "react";
 import Form from "../components/Form";
 
 function Login() {
@@ -28,7 +28,8 @@ function Login() {
         .post("http://localhost:5000/login", userdata)
         .then((res) => {
           localStorage.setItem("response", JSON.stringify(res));
-          router.push("/");
+          alert("Login Successful!");
+          router.push("/dashford");
         });
     }
   };
