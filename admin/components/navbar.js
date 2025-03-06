@@ -22,7 +22,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center">
             <Image
               priority
-              src="/logo.png"
+              src="/logo.png "
               alt="Dashford Logo"
               width={100}
               height={36}

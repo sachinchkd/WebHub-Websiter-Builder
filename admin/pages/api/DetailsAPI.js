@@ -1,5 +1,7 @@
-import connectMongo from "../../utils/MongoConnect";
 import Details from "../../models/Details";
+import connectMongo from "../../utils/MongoConnect";
+
+
 
 export default async function detailsAPI(req, res) {
   try {

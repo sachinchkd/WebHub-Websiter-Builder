@@ -1,8 +1,8 @@
 import { Button, TextField } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import back from "../assets/back.gif";
-import logo1 from "../assets/logo.png";
+import back from "../../img/back.gif";
+import logo1 from "../../img/logo.png";
 
 function Form(props) {
   const [val1, setVal1] = useState("");

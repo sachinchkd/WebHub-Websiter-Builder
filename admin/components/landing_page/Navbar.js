@@ -5,7 +5,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <Image src="/logo.png" alt="logo1" />
+      <Image src="/logo.png" alt="logo" width={100} height={50}  />
 
       <div className="links">
         <Link href="/login">

@@ -11,7 +11,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import logo from "../../public/logo.png";
+
 function ShopTheme() {
   const [shopName, setShopName] = useState("");
   const [theme, setTheme] = useState("");
