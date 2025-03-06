@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import ShopTheme from '../../components/ShopTheme'
+import ShopTheme from '../components/landing_page/ShopTheme'
 
 function RegisterShop() {
   return (

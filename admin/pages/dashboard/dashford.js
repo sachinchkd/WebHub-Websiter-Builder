@@ -1,9 +1,8 @@
-import Header from "../components/header";
-import Cards from "../components/card";
-import Website from "./website";
 import Link from "next/link";
 import { useState } from "react";
 import Modal from "react-modal";
+import Header from "../../components//header";
+import Cards from "../../components/card";
 
 const Dashford = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);

@@ -3,9 +3,9 @@ import "flowbite";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import Header from "../components/header";
-import Layout from "../components/layout";
-import Table from "../components/table";
+import Header from "../../components/header";
+import Layout from "../../components/layout";
+import Table from "../../components/table";
 
 const Products = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
