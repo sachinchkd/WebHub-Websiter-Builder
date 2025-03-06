@@ -1,5 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
+"Use client";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
 const WebProducts = () => {
   useEffect(() => {
@@ -36,7 +37,7 @@ const WebProducts = () => {
                   className="w-60 inline-block justify-center bg-white border ml-3 mt-2 border-gray-200 px-3"
                 >
                   <a href="#">
-                    <img
+                    <Image
                       class="flex justify-center rounded-t-lg"
                       src="http://res.cloudinary.com/dir7pptxd/image/upload/v1683970161/my-uploads/rtzng45sttbg2xoc7g2n.png"
                       alt="Uploaded Image"

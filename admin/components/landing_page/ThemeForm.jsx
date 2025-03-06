@@ -8,6 +8,7 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
+import Image from "next/image";
 
 function ThemeForm(props) {
   const [shopName, setShopName] = useState("");
@@ -34,10 +35,10 @@ function ThemeForm(props) {
   return (
     <form className="flex w-[98%] mr-0 min-h-[40vh] bg-[white] border-2 border-black translate-y-3 ">
       <Button variant="text" className={`w-[1rem] h-8`} onClick={clicked}>
-        <img src="/back.gif" />
+        <Image src="/back.gif" />
       </Button>
       <div className="flex-auto w-[20%] pt-[5%]">
-        <img src="/logo1.png" className="w-[9rem]" />
+        <Image src="/logo1.png" className="w-[9rem]" />
       </div>
       <div className="flex-auto w-[70%] pt-[5%] pr-[10%]">
         <h1 className="font-mono font-bold text-xl text-[#4d4d4d]">

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/header";
-
-import Modal from "react-modal";
-import Table from "../components/table";
-import Layout from "../components/layout";
-
+"use client"
 import "flowbite";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
+import Header from "../components/header";
+import Layout from "../components/layout";
+import Table from "../components/table";
 
 const Products = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -100,7 +100,7 @@ const Products = () => {
 
   useEffect(() => {
     displayProducts();
-  }, []);
+  }, [displayProducts]);
 
   const [ProductsResult, setProductsResult] = useState([]);
   const displayProducts = async () => {
@@ -258,7 +258,7 @@ const Products = () => {
                 type="file"
                 name="file"
               />
-              <img src={imageSrc} />
+              <Image src={imageSrc} />
 
               {imageSrc && !uploadData && (
                 <p>

@@ -5,6 +5,7 @@ import {
   Radio,
   RadioGroup
 } from "@mui/material";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -29,7 +30,7 @@ function UserSelectorForm(props) {
   return (
     <div className="flex w-[98%] mr-0 min-h-[40vh] bg-[white] border-2 border-black translate-y-3 ">
       <div className="flex-auto w-[20%] pt-[5%]">
-        <img src="/logo.png" className="w-[5rem]" />
+        <Image src="/logo.png" className="w-[5rem]" />
       </div>
       <div className="flex-auto w-[70%] pt-[5%] pr-[10%]">
         <h1 className="font-mono font-bold text-xl text-[#4d4d4d]">

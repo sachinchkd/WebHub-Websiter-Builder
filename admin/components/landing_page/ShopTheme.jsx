@@ -1,16 +1,17 @@
-import axios from "axios";
-import React, { useState } from "react";
-import logo1 from "../assets/logo1.png";
 import {
+  Box,
   Button,
   FormControl,
   InputLabel,
-  TextField,
-  Select,
   MenuItem,
-  Box,
+  Select,
+  TextField,
 } from "@mui/material";
+import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import React, { useState } from "react";
+import logo from "../assets/logo.png";
 function ShopTheme() {
   const [shopName, setShopName] = useState("");
   const [theme, setTheme] = useState("");
@@ -56,7 +57,7 @@ function ShopTheme() {
   return (
     <form className="flex w-[98%] mr-0 min-h-[40vh] bg-[white] border-2 border-black translate-y-3 ">
       <div className="flex-auto w-[20%] pt-[5%]">
-        <img src={logo1} className="w-[9rem]" />
+        <Image src={logo} className="w-[9rem]" />
       </div>
       <div className="flex-auto w-[70%] pt-[5%] pr-[10%]">
         <h1 className="font-mono font-bold text-xl text-[#4d4d4d]">
