@@ -1,8 +1,8 @@
-import React from "react";
-import Header from "../components/header";
 import "flowbite";
-import Layout from "../components/layout";
+import React from "react";
 import Modal from "react-modal";
+import Header from "../../components/header";
+import Layout from "../../components/layout";
 
 const Categories = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
