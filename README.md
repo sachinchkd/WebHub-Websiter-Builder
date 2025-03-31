@@ -80,7 +80,7 @@ npm run dev
 ![Frontpage](screenshots/a.png)
 ![Dashboardpage](screenshots/b.png)
 ![](screenshots/c.png)
-![](screenshots/SS.png)
+![](screenshots/FRONT PAGE.png)
 
 
 
